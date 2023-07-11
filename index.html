@@ -98,10 +98,18 @@
                 
       } else if (guessCount === 10) { 
         lastResult.textContent = "게임 오버! 10회를 모두 사용하셨습니다.";
-        setGameOver();
-        
-      } else {
-        
+        setGameOver();        
+      } else { 
+        //플레이어들에게 자신이 틀렸으며 추측이 너무 높거나 낮은지 알려줍니다.
+        //유저가 추측한 것이 우리의 랜덤숫자보다 낮을때
+        lastResult.textContent = "틀렸어요!"
+        if (randomNumber > userGuess) {
+          //p태그 lowOrHi의 텍스트컨텐츠의 높고낮음을 말해준다.
+          // 유저가 추측한것이 우리의 랜덤 숫자보다 높을때
+          lowOrHi.textContent = "추측한 숫자보다 높습니다."
+        } else if (randomNumber < userGuess){
+          lowOrHi.textContent = "추측한 숫자보다 낮습니다."
+        }
 
       }
       // guessCount를 1 증가해줍니다
