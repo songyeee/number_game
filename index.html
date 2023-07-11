@@ -21,7 +21,7 @@
   <h1>숫자 추측 게임</h1>
 
   <p>1~100까지의 랜덤 숫자를 선택하세요. 
-    기회는 10번. 더 높은지
+    도전 기회는 10번 있습니다. 더 높은지
     더 낮은지 말씀드릴게요.
   </p>
 
@@ -59,19 +59,17 @@
     
 
     //q3. 변수 2가지를 선언(let)해주세요. guessCount 초기값1, 
-    // restButton 선언만
+    // reset 선언만
 
     let guessCount = 1;
-    let restButton;
+    let resetButton;
 
-    // 올바른 번호인지 확인하는 함수를 만들기 checkGuess
     function setGameOver(){}
-    
+    // 올바른 번호인지 확인하는 함수를 만들기 checkGuess
+        
     function checkGuess(event) {
       //기본값 막기
       event.preventDefault();
-
-
       // Q4.사용자가 추측한 번호를 알아내는 변수 userGuess
       const userGuess = Number(guessField.value);
       // 제약사항 1. 숫자로만 받기 1~100
@@ -82,7 +80,7 @@
         lastResult.textContent = "축하합니다! 맞추셨어요!";
         // 플레이어가 더 많은 추측을 입력할수없도록합니다
         // 게임이 끝나는 로직
-        // setGameOver();
+         setGameOver();
         // 추측창을 사용할 수 없게
         guessField.disabled = true;
         guessSubmit.disabled = true;
@@ -92,6 +90,10 @@
         resetButton.textContent = "새 게임하기";
         // q3.만든 DOM 버튼을 body태그 안에 추가합니다.
         document.body.appendChild(resetButton);
+        // q4. resetButton을 'click'했을때 새 게임이 되게하는 리스너를 추가해주세요.
+        // 새 게임 함수의 이름은 resetGame.
+        resetButton.addEventListener('click', resetGame);
+      
 
 
         // 플레이어가 게임을 다시 시작할수있도록 하는 디스플레이컨트롤
@@ -117,6 +119,21 @@
       //guessCount += 1;
       guessCount++;
     }
+    
+    function resetGame() {
+          //초기화
+          guessCount = 1;
+          guessField.disabled = false;
+          guessSubmit.disabled = false;
+          resetButton.parentNode.removeChild(resetButton);
+          let randomNumber = Math.floor(Math.random() * 100) +1;
+          guessField.value = '';
+          lowOrHi.textContent = '';
+          lastResult.textContent = '';
+        
+        }
+      
+      
 
   // 이벤트 리스너만들기 click했을때 checkGuess함수를 실행하는 리스너 추가
   guessSubmit.addEventListener('click', checkGuess);
