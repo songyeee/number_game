@@ -1,4 +1,4 @@
-<script>
+
     // q1. 1~100까지 랜덤한 숫자(정수)를 반환하는 변수 
     //randomNumber를 선언하고 초기화하세요 *Math.random()
   
@@ -93,5 +93,3 @@
 
   // 이벤트 리스너만들기 click했을때 checkGuess함수를 실행하는 리스너 추가
   guessSubmit.addEventListener('click', checkGuess);
-
-  </script>
